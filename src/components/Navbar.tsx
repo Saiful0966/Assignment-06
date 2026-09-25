@@ -6,7 +6,7 @@ import logo from "@/assets/logo.png";
 const Navbar = () => {
   return (
     <div className="navbar bg-[#0f1115] text-white px-6 py-4 border-b border-gray-800">
-      {/* Navbar Logo Name */}
+      {/* Navbar Logo */}
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-white pl-0">
