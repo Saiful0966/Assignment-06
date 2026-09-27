@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from "next/link";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
@@ -50,32 +51,46 @@ const Navbar = () => {
       {/* Navbar Workouts and  My Plan button */}
 
       <div className="navbar-center hidden lg:flex">
-        <div className="flex items-center gap-6">
-          <button className="btn btn-sm border-none bg-[#1e2710] text-[#88e700] hover:bg-[#283514] rounded-full px-5 font-semibold text-xs capitalize">
-            Workouts
-          </button>
-          <button className="btn btn-sm btn-ghost text-gray-400 hover:text-white rounded-full px-3 font-medium text-xs capitalize">
-            My Plan
-          </button>
+       <div className="flex items-center gap-6">
+        <Link 
+          href="/" 
+          className="btn btn-sm border-none bg-[#1e2710] text-[#88e700] hover:bg-[#283514] rounded-full px-5 font-semibold text-xs capitalize flex items-center justify-center">
+          Workouts
+         </Link>
+
+         <Link 
+           href="/my-plan" 
+           className="btn btn-sm btn-ghost text-gray-400 hover:text-white rounded-full px-3 font-medium text-xs capitalize flex items-center justify-center">
+           My Plan
+          </Link>
         </div>
       </div>
 
-      {/* Navbar Plan */}
+
+      {/* Navbar Plan & Saved */}
+
       <div className="navbar-end flex items-center gap-6">
-        <div className="flex items-center gap-2 cursor-pointer">
-          <span className="text-sm font-medium text-gray-300"> Plan </span>
+        {/* Navbar Plan  */}
+        <Link 
+          href="/my-plan" 
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition duration-150"
+        >
+          <span className="text-sm font-medium text-gray-300">Plan</span>
           <span className="badge bg-[#88e700] text-black font-bold text-xs px-2 py-2 rounded-full border-none">
             0
           </span>
-        </div>
+        </Link>
 
         {/* Navbar Saved */}
-        <div className="flex items-center gap-2 cursor-pointer">
-          <span className="text-sm font-medium text-gray-300"> Saved </span>
+        <Link 
+          href="/my-plan" 
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition duration-150"
+        >
+          <span className="text-sm font-medium text-gray-300">Saved</span>
           <span className="badge bg-[#242730] text-gray-300 border border-gray-700 font-bold text-xs px-2 py-2 rounded-full">
             0
           </span>
-        </div>
+        </Link>
       </div>
     </div>
   );

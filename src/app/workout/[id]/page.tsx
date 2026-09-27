@@ -7,9 +7,14 @@ interface Workout {
   image: string;
   muscleGroups: string[];
   equipment: string;
+  difficulty: string;
   duration: number | string;
   caloriesBurned: number | string;
+  sets: number | string;
+  reps: number | string;
   rating: number | string;
+  description: string;
+  instructions: string[];
 }
 
 async function getWorkout(id: string): Promise<Workout | null> {
@@ -73,7 +78,7 @@ export default async function WorkoutDetailsPage({
 
             {/* description */}
             <p className="text-gray-400 text-sm leading-relaxed">
-              A compound exercise that builds chest thickness, triceps, and pressing power. Focus on controlled form and full range of motion.
+              {workout.description}
             </p>
 
             {/* Group Tags */}
@@ -89,35 +94,85 @@ export default async function WorkoutDetailsPage({
             </div>
 
             {/* Card List */}
+           
             <div className="bg-[#0f1115] rounded-xl p-4 border border-gray-800/80 space-y-3 mt-4">
+          
               <div className="flex justify-between items-center text-xs">
-                <span className="text-gray-400 uppercase font-semibold">Equipment</span>
-                <span className="text-white font-bold">{workout.equipment}</span>
+               <span className="text-gray-400 uppercase font-semibold">
+                  Equipment
+               </span>
+                <span className="text-white font-bold">
+                  {workout.equipment}
+               </span>
               </div>
+
               <div className="flex justify-between items-center text-xs border-t border-gray-800/60 pt-2">
-                <span className="text-gray-400 uppercase font-semibold">Duration</span>
-                <span className="text-white font-bold">{workout.duration} min</span>
-              </div>
+                <span className="text-gray-400 uppercase font-semibold">
+                  Difficulty
+                </span>
+                <span className="text-white font-bold">
+                 {workout.difficulty}
+                </span>
+             </div>
+
               <div className="flex justify-between items-center text-xs border-t border-gray-800/60 pt-2">
-                <span className="text-gray-400 uppercase font-semibold">Calories Burned</span>
-                <span className="text-white font-bold">{workout.caloriesBurned} kcal</span>
+                <span className="text-gray-400 uppercase font-semibold">
+                  Sets
+               </span>
+               <span className="text-white font-bold">
+                 {workout.sets}
+                </span>
               </div>
+
               <div className="flex justify-between items-center text-xs border-t border-gray-800/60 pt-2">
-                <span className="text-gray-400 uppercase font-semibold">Rating</span>
-                <span className="text-yellow-400 font-bold">★ {workout.rating}</span>
+                <span className="text-gray-400 uppercase font-semibold">
+                  Reps
+                </span>
+                <span className="text-white font-bold">
+                  {workout.reps}
+                </span>
               </div>
+
+              <div className="flex justify-between items-center text-xs border-t border-gray-800/60 pt-2">
+                <span className="text-gray-400 uppercase font-semibold">
+                  Duration
+                </span>
+                <span className="text-white font-bold">
+                 {workout.duration} min
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center text-xs border-t border-gray-800/60 pt-2">
+                <span className="text-gray-400 uppercase font-semibold">
+                  Calories Burned
+                </span>
+                <span className="text-white font-bold">
+                  {workout.caloriesBurned} kcal
+                </span>
+             </div>
+
+              <div className="flex justify-between items-center text-xs border-t border-gray-800/60 pt-2">
+                <span className="text-gray-400 uppercase font-semibold">
+                  Rating
+                </span>
+                <span className="text-yellow-400 font-bold">
+                  ★ {workout.rating}
+                </span>
+             </div>
+
             </div>
 
+
             {/* Instructions List */}
+
             <div className="space-y-2 pt-2">
               <h3 className="text-xs font-extrabold uppercase text-gray-300 tracking-wider">
                 INSTRUCTIONS
               </h3>
               <ol className="list-decimal list-inside text-xs text-gray-400 space-y-1.5 leading-normal">
-                <li>Lie flat on the bench with your feet firmly planted on the ground.</li>
-                <li>Grasp the bar with a medium-width grip for optimal chest engagement.</li>
-                <li>Unrack the bar and lower it smoothly to your mid-chest level.</li>
-                <li>Push the bar back up explosively until your arms are fully extended.</li>
+               {workout.instructions.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+               ))}
               </ol>
             </div>
           </div>
