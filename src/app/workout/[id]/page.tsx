@@ -1,5 +1,7 @@
 
+
 import Image from "next/image";
+import ActionButtons from "@/components/ActionButtons"; 
 
 interface Workout {
   id: string | number;
@@ -103,7 +105,7 @@ export default async function WorkoutDetailsPage({
                </span>
                 <span className="text-white font-bold">
                   {workout.equipment}
-               </span>
+                </span>
               </div>
 
               <div className="flex justify-between items-center text-xs border-t border-gray-800/60 pt-2">
@@ -178,14 +180,7 @@ export default async function WorkoutDetailsPage({
           </div>
 
           {/* Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
-            <button className="bg-[#88e700] hover:bg-[#79cb00] text-black font-extrabold text-xs py-3.5 px-4 rounded-xl uppercase tracking-wide transition duration-200 shadow-md">
-             + Add to today &apos; s plan
-            </button>
-            <button className="bg-transparent hover:bg-gray-800 border border-gray-700 text-white font-extrabold text-xs py-3.5 px-4 rounded-xl uppercase tracking-wide transition duration-200">
-              ♡ Save for later
-            </button>
-          </div>
+          <ActionButtons workout={workout} />
 
         </div>
 

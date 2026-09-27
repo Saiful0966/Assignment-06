@@ -1,12 +1,18 @@
 
+
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 import logo from "@/assets/logo.png";
+import { usePlan } from "@/context/PlanContext";
 
 const Navbar = () => {
+  const { planList, savedList } = usePlan();
+
   return (
-    <div className="navbar bg-[#0f1115] text-white px-6 py-4 border-b border-gray-800">
+    <div className="sticky top-0 z-50 navbar bg-[#0f1115]/90 backdrop-blur-md text-white px-6 py-4 border-b border-gray-800">
       {/* Navbar Logo */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -31,64 +37,65 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-[#181a20] rounded-box z-10 mt-3 w-52 p-2 shadow border border-gray-800 text-gray-300"
           >
             <li>
-              <a className="text-[#88e700] font-semibold">Workouts</a>
+              <Link href="/" className="text-[#88e700] font-semibold">Workouts</Link>
             </li>
             <li>
-              <a>My Plan</a>
+              <Link href="/my-plan">My Plan</Link>
             </li>
           </ul>
         </div>
 
-        {/* Brand Logo Name */}
-        <a className="flex items-center gap-2 text-2xl font-black tracking-wider text-white uppercase cursor-pointer">
+        {/* Logo Name */}
+        <Link href="/" className="flex items-center gap-2 text-2xl font-black tracking-wider text-white uppercase cursor-pointer">
           <span className="text-[#88e700]">
             <Image src={logo} alt="FITLOG Logo" width={28} height={28} />
           </span>
           FITLOG
-        </a>
+        </Link>
       </div>
 
-      {/* Navbar Workouts and  My Plan button */}
-
+      {/* Navbar Workouts and My Plan button */}
       <div className="navbar-center hidden lg:flex">
-       <div className="flex items-center gap-6">
-        <Link 
-          href="/" 
-          className="btn btn-sm border-none bg-[#1e2710] text-[#88e700] hover:bg-[#283514] rounded-full px-5 font-semibold text-xs capitalize flex items-center justify-center">
-          Workouts
-         </Link>
+        <div className="flex items-center gap-6">
+          <Link 
+            href="/" 
+            className="btn btn-sm border-none bg-[#1e2710] text-[#88e700] hover:bg-[#283514] rounded-full px-5 font-semibold text-xs capitalize flex items-center justify-center">
+            Workouts
+          </Link>
 
-         <Link 
-           href="/my-plan" 
-           className="btn btn-sm btn-ghost text-gray-400 hover:text-white rounded-full px-3 font-medium text-xs capitalize flex items-center justify-center">
-           My Plan
+          <Link 
+            href="/my-plan" 
+            className="btn btn-sm btn-ghost text-gray-400 hover:text-white rounded-full px-3 font-medium text-xs capitalize flex items-center justify-center">
+            My Plan
           </Link>
         </div>
       </div>
 
-
       {/* Navbar Plan & Saved */}
-
       <div className="navbar-end flex items-center gap-6">
-        {/* Navbar Plan  */}
+        {/* Plan */}
         <Link 
           href="/my-plan" 
-          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition duration-150"
-        >
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition duration-150">
+
           <span className="text-sm font-medium text-gray-300">Plan</span>
-          <span className="badge bg-[#88e700] text-black font-bold text-xs px-2 py-2 rounded-full border-none">
-            0
+          <span 
+            suppressHydrationWarning
+            className="badge bg-[#88e700] text-black font-bold text-xs px-2 py-2 rounded-full border-none">
+            {planList.length}
           </span>
         </Link>
 
-        {/* Navbar Saved */}
+        {/* Saved */}
         <Link 
           href="/my-plan" 
           className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition duration-150"
         >
           <span className="text-sm font-medium text-gray-300">Saved</span>
-          <span className="badge bg-[#242730] text-gray-300 border border-gray-700 font-bold text-xs px-2 py-2 rounded-full">
-            0
+          <span 
+            suppressHydrationWarning
+            className="badge bg-[#242730] text-gray-300 border border-gray-700 font-bold text-xs px-2 py-2 rounded-full">
+            {savedList.length}
           </span>
         </Link>
       </div>
